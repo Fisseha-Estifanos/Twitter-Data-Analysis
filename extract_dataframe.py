@@ -80,7 +80,12 @@ class TweetDfExtractor:
         return source
 
     def find_screen_name(self)->list:
-        screen_name = 
+        """
+        a function to find and return the screen name from where the
+        tweet originated
+        """
+        screen_name = [x['user']['screen_name'] for x in self.tweets_list]
+        return screen_name
 
     def find_followers_count(self)->list:
         followers_count = 
