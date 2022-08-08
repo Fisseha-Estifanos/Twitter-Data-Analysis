@@ -106,17 +106,17 @@ class TweetDfExtractor:
             is_sensitive = [x['possibly_sensitive'] for x in self.tweets_list]
         except KeyError:
             is_sensitive = None
-
         return is_sensitive
-        """ # function to find and return the possible sensitivity of a tweet
+        """
+        # function to find and return the possible sensitivity of a tweet
         is_sensitive = []
         for tweet in self.tweets_list:
             if 'possibly_sensitive' in tweet.keys():
                 is_sensitive.append(tweet['possibly_sensitive'])
             else:
                 is_sensitive.append(None)
-
-        return is_sensitive"""
+        return is_sensitive
+        """
 
     def find_favorite_count(self)->list:
         """
@@ -129,7 +129,6 @@ class TweetDfExtractor:
                                 tweet['retweeted_status']['favorite_count'])
             else:
                 favorite_count.append(0)
-
         return favorite_count
     
     def find_retweet_count(self)->list:
@@ -143,7 +142,6 @@ class TweetDfExtractor:
                                 tweet['retweeted_status']['retweet_count'])
             else:
                 retweet_count.append(0)
-
         return retweet_count
 
     def find_hashtags(self)->list:
@@ -151,11 +149,14 @@ class TweetDfExtractor:
         function to find and return the hashtags of a tweet
         """
         hashtags = [x['entities']['hashtags'] for x in self.tweets_list]
-
         return hashtags
 
     def find_mentions(self)->list:
-        mentions = 
+        """
+        function to find and return the mentions of a tweet
+        """
+        mentions = [x['entities']['user_mentions'] for x in self.tweets_list]
+        return mentions
 
 
     def find_location(self)->list:
