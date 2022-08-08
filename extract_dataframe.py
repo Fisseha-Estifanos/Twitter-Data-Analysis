@@ -31,7 +31,9 @@ class TweetDfExtractor:
     dataframe
     """
     def __init__(self, tweets_list):
-        
+        """
+        The initializer for the TweetDf Extractor class
+        """
         self.tweets_list = tweets_list
 
     # an example function
