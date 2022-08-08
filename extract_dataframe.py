@@ -76,7 +76,6 @@ class TweetDfExtractor:
         a function to find and return the source of a tweet
         """
         source = [x['source'] for x in self.tweets_list]
-
         return source
 
     def find_screen_name(self)->list:
@@ -88,7 +87,12 @@ class TweetDfExtractor:
         return screen_name
 
     def find_followers_count(self)->list:
-        followers_count = 
+        """
+        function to find and return the follower count of a twitter
+        """
+        followers_count = [x['user']['followers_count'] for x in
+                           self.tweets_list]
+        return followers_count
 
     def find_friends_count(self)->list:
         friends_count = 
