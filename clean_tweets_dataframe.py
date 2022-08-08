@@ -79,3 +79,19 @@ class Clean_Tweets:
         """
         self.df = re.findall('(#[A-Za-z]+[A-Za-z0-9-_]+)', df) 
         return df
+
+    def text_category(self, series: pd.Series) -> list:
+        """
+        function that return positive, negative or neutral based on polarity
+        """
+        polarities = []
+        for pol in series:
+            if pol >= 0.00000000001:
+                polarities.append("positive")
+            elif pol == 0.00000000000:
+                polarities.append("neutral")
+            elif pol <= -0.00000000001:
+                polarities.append("negative")
+            else:
+                polarities.append('UNK')
+        return polarities
