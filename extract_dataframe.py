@@ -56,8 +56,13 @@ class TweetDfExtractor:
                 text.append(x['text'])
         return text
 
-    def find_sentiments(self, text)->list:        
-        return polarity, self.subjectivity
+    def find_sentiments(self, text)->list:
+        """
+        a function to find and return polarity and subjectivity of a twit
+        """ 
+        polarity = [TextBlob(x).polarity for x in text]
+        subjectivity = [TextBlob(x).subjectivity for x in text]
+        return (polarity, subjectivity)
 
     def find_created_time(self)->list:
        
@@ -85,7 +90,7 @@ class TweetDfExtractor:
 
         return is_sensitive
 
-    def find_favourite_count(self)->list:
+    def find_favorite_count(self)->list:
         
     
     def find_retweet_count(self)->list:
@@ -114,13 +119,13 @@ class TweetDfExtractor:
         
         columns = ['created_at', 'source', 'original_text','polarity','subjectivity', 'lang', 'favorite_count', 'retweet_count', 
             'original_author', 'followers_count','friends_count','possibly_sensitive', 'hashtags', 'user_mentions', 'place']
-        
+       
         created_at = self.find_created_time()
         source = self.find_source()
         text = self.find_full_text()
         polarity, subjectivity = self.find_sentiments(text)
         lang = self.find_lang()
-        fav_count = self.find_favourite_count()
+        fav_count = self.find_favorite_count()
         retweet_count = self.find_retweet_count()
         screen_name = self.find_screen_name()
         follower_count = self.find_followers_count()
