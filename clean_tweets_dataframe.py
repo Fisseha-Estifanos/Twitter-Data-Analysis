@@ -1,3 +1,4 @@
+import re
 import pandas as pd
 
 class Clean_Tweets:
@@ -69,4 +70,12 @@ class Clean_Tweets:
         drop nulls
         """
         self.df = self.df.dropna(axis=0, how='any', inplace=False)
+        return df
+
+    def find_hashtags(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Method to find hashtags from tweets
+        This function will extract hashtags
+        """
+        self.df = re.findall('(#[A-Za-z]+[A-Za-z0-9-_]+)', df) 
         return df
