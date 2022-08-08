@@ -95,7 +95,11 @@ class TweetDfExtractor:
         return followers_count
 
     def find_friends_count(self)->list:
-        friends_count = 
+        """
+        function to find and return the friends count of a twitter
+        """
+        friends_count = [x['user']['friends_count'] for x in self.tweets_list]
+        return  friends_count
 
     def is_sensitive(self)->list:
         try:
