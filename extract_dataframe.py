@@ -119,7 +119,18 @@ class TweetDfExtractor:
         return is_sensitive"""
 
     def find_favorite_count(self)->list:
-        
+        """
+        function to find and return the favorite count of a tweet
+        """
+        favorite_count = []
+        for tweet in self.tweets_list:
+            if 'retweeted_status' in tweet.keys():
+                favorite_count.append(
+                                tweet['retweeted_status']['favorite_count'])
+            else:
+                favorite_count.append(0)
+
+        return favorite_count
     
     def find_retweet_count(self)->list:
         retweet_count = 
