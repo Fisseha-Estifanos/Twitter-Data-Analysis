@@ -63,3 +63,10 @@ class Clean_Tweets:
         """
         self.df.query("lang == 'en'", inplace=True)
         return df
+
+    def drop_nulls(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        drop nulls
+        """
+        self.df = self.df.dropna(axis=0, how='any', inplace=False)
+        return df
