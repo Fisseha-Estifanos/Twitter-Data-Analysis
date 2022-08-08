@@ -18,8 +18,7 @@ def read_json(json_file: str) -> list:
     tweets_data = []
     for tweets in open(json_file,'r'):
         tweets_data.append(json.loads(tweets))
-    
-    
+
     return len(tweets_data), tweets_data
 
 class TweetDfExtractor:
@@ -42,7 +41,6 @@ class TweetDfExtractor:
         """
         statuses_count = [x['user']['statuses_count']
                           for x in self.tweets_list]
-
         return statuses_count
 
     def find_full_text(self)->list:
@@ -56,12 +54,9 @@ class TweetDfExtractor:
                             ['extended_tweet']['full_text'])
             except KeyError:
                 text.append(x['text'])
-
         return text
-       
-    
-    def find_sentiments(self, text)->list:
-        
+
+    def find_sentiments(self, text)->list:        
         return polarity, self.subjectivity
 
     def find_created_time(self)->list:
