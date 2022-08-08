@@ -16,16 +16,13 @@ class Clean_Tweets:
         unwanted_rows = df[df['retweet_count'] == 'retweet_count' ].index
         df.drop(unwanted_rows , inplace=True)
         df = df[df['polarity'] != 'polarity']
-        
         return df
 
     def drop_duplicate(self, df:pd.DataFrame)->pd.DataFrame:
         """
         drop duplicate rows
         """
-        
-        ---
-        
+        self.df.drop_duplicates().drop_duplicates(subset='original_text', inplace=True)
         return df
 
     def convert_to_datetime(self, df:pd.DataFrame)->pd.DataFrame:
