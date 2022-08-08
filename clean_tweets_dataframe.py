@@ -1,5 +1,6 @@
 import re
 import pandas as pd
+from defaults import *
 
 class Clean_Tweets:
     """
@@ -95,3 +96,13 @@ class Clean_Tweets:
             else:
                 polarities.append('UNK')
         return polarities
+
+if __name__ == "__main__":
+    """
+    read the twitter dataset and Pass the data to the Clean_Tweets
+    class
+    """
+    global_tweet_df = pd.read_json(global_data, lines=True)
+    african_tweet_df = pd.read_json(african_data, lines=True)
+    global_cleaner = Clean_Tweets(global_tweet_df)
+    african_cleaner = Clean_Tweets(african_tweet_df)
