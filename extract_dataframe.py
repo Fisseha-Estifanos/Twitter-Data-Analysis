@@ -167,6 +167,11 @@ class TweetDfExtractor:
         
         return location
 
+         # function to find and return the location of a tweet
+        location = [x.get('user', {}).get('location', None) for x in
+                    self.tweets_list]
+        return location
+
     
         
         
