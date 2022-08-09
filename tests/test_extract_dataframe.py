@@ -118,6 +118,17 @@ class TestTweetDfExtractor(unittest.TestCase):
                              'Fri Apr 22 22:13:15 +0000 2022']
         self.assertEqual(self.df.find_created_time(), really_created_at)
 
+    def test_find_source(self):
+        """
+        Test case for the find source method
+        """
+        # error test  case
+        error_source = ['<a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>', '<a href="https://mobile.twitter.com" rel="nofollow">Twitter Web App</a>', '<a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>', '<a href="https://mobile.twitter.com" rel="nofollow">Twitter Web App</a>', '<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>']
+
+        # the edited test case
+        source = ['<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>', '<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>', '<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>', '<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>', '<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>']
+        self.assertEqual(self.df.find_source(), source)
+
     def test_find_screen_name(self):
         """
         Test case for the find screen name method
@@ -212,6 +223,16 @@ class TestTweetDfExtractor(unittest.TestCase):
         langs = ['de', 'de', 'de', 'de', 'de']
         self.assertEqual(self.df.find_lang(), langs)
 
+    def test_find_retweet_count(self):
+        """
+        Test case for the find retweet count method
+        """
+        # error test
+        error_retweets_test_Case = [612, 92, 1, 899, 20]
+
+        # the edited error test
+        retweets = [355, 505, 4, 332, 386]
+        self.assertEqual(self.df.find_retweet_count(), retweets)
 
 if __name__ == "__main__":
     unittest.main()
