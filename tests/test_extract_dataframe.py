@@ -167,10 +167,32 @@ class TestTweetDfExtractor(unittest.TestCase):
                                 []]
         self.assertEqual(self.df.find_hashtags(), hashtags)
 
-    # def test_find_mentions(self):
-    #     self.assertEqual(self.df.find_mentions(), )
-
-
+    def test_find_mentions(self):
+        """
+        Test case for the find mentions method
+        """
+        mentions = [[{"screen_name": "nikitheblogger",
+                     "name": "Neverforgetniki", "id": 809188392089092097,
+                      "id_str": "809188392089092097", "indices": [3, 18]}],
+                    [{"screen_name": "sagt_mit",
+                      "name": "Sie sagt es mit Bildern",
+                      "id": 1511959918777184256,
+                      "id_str": "1511959918777184256",
+                      "indices": [3, 12]}],
+                    [{"screen_name": "Kryptonoun",
+                      "name": "Kryptoguru", "id": 951051508321345536,
+                      "id_str": "951051508321345536", "indices": [3, 14]},
+                     {"screen_name": "WRi007", "name": "Wolfgang Berger",
+                      "id": 1214543251283357696,
+                      "id_str": "1214543251283357696", "indices": [16, 23]}],
+                    [{"screen_name": "WRi007",
+                      "name": "Wolfgang Berger", "id": 1214543251283357696,
+                      "id_str": "1214543251283357696", "indices": [3, 10]}],
+                    [{"screen_name": "RolandTichy", "name": "Roland Tichy",
+                      "id": 19962363, "id_str": "19962363", "indices": [3, 15]}
+                     ]]
+        self.assertEqual(self.df.find_mentions(),  mentions)
+        
 
 if __name__ == "__main__":
     unittest.main()
