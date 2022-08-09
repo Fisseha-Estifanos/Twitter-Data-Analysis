@@ -166,7 +166,7 @@ class TweetDfExtractor:
                     self.tweets_list]
         return location
 
-    def get_tweet_df(self, save=False)->pd.DataFrame:
+    def get_tweet_df(self, save: bool=False, save_as : str = 'processed_tweet_data')->pd.DataFrame:
         """
         required columns to be generated
         """
@@ -200,7 +200,8 @@ class TweetDfExtractor:
         df = pd.DataFrame(data=data, columns=columns)
 
         if save:
-            df.to_csv('data/processed_tweet_data.csv', index=False)
+            data_path = 'data/' + save_as + '.csv'
+            df.to_csv(data_path, index=False)
             print('File Successfully Saved.!!!')
         
         return df
