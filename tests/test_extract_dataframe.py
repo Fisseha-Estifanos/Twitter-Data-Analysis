@@ -234,5 +234,17 @@ class TestTweetDfExtractor(unittest.TestCase):
         retweets = [355, 505, 4, 332, 386]
         self.assertEqual(self.df.find_retweet_count(), retweets)
 
+    def test_find_favorite_count(self):
+        """
+        Test case for the find favorite count method
+        """
+        # error test
+        # self.assertEqual(self.df.find_favorite_count(),
+        #                   [548, 195, 2, 1580, 72])
+
+        # the edited error test
+        self.assertEqual(self.df.find_favorite_count(),
+                         [2356, 1985, 16, 1242, 1329])
+
 if __name__ == "__main__":
     unittest.main()
