@@ -1,5 +1,6 @@
 import json
 import pandas as pd
+import numpy as np
 from textblob import TextBlob
 from defaults import *
 
@@ -179,7 +180,6 @@ class TweetDfExtractor:
         """
         required columns to be generated
         """
-        
         # added_column_Names = ['status_count', 'screen_name']
         columns = ['created_at', 'source', 'original_text','polarity',
                    'subjectivity', 'lang', 'favorite_count', 'status_count',
@@ -222,12 +222,20 @@ if __name__ == "__main__":
     
     # for the global data set
     _, global_tweet_list = read_json(global_data)
+     # to make sure all the data is passe to he
+    print(f"Total number of data: {_}")
     global_tweet = TweetDfExtractor(global_tweet_list)
-    global_tweet_df = global_tweet.get_tweet_df(save= True, save_as='processed_global_tweet_data') 
+    global_tweet_df = global_tweet.get_tweet_df(save= True, save_as='processed_global_tweet_data')
+    #print(global_tweet_df)
 
+    """
     # for the african data set
     _, african_tweet_list = read_json(african_data)
+     # to make sure all the data is passe to he
+    print(f"Total number of data: {_}")
     african_tweet = TweetDfExtractor(african_tweet_list)
     african_tweet_df = african_tweet.get_tweet_df(save = True, save_as='processed_african_tweet_data') 
+    #print(african_tweet_df)
+    # """
 
     # TODO : use all defined functions to generate a dataframe with the specified columns above
