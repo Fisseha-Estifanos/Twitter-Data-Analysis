@@ -1,6 +1,7 @@
 import json
 import pandas as pd
 from textblob import TextBlob
+from defaults import *
 
 
 def read_json(json_file: str) -> list:
@@ -211,8 +212,15 @@ if __name__ == "__main__":
     # required column to be generated you should be creative and add more features
     columns = ['created_at', 'source', 'original_text','clean_text', 'sentiment','polarity','subjectivity', 'lang', 'favorite_count', 'retweet_count', 
     'original_author', 'screen_count', 'followers_count','friends_count','possibly_sensitive', 'hashtags', 'user_mentions', 'place', 'place_coord_boundaries']
-    _, tweet_list = read_json("../covid19.json")
-    tweet = TweetDfExtractor(tweet_list)
-    tweet_df = tweet.get_tweet_df() 
+    
+    # for the global data set
+    _, global_tweet_list = read_json(global_data)
+    global_tweet = TweetDfExtractor(global_tweet_list)
+    global_tweet_df = global_tweet.get_tweet_df() 
 
-    # use all defined functions to generate a dataframe with the specified columns above
+    # for the african data set
+    _, african_tweet_list = read_json(african_data)
+    african_tweet = TweetDfExtractor(african_tweet_list)
+    african_tweet_df = african_tweet.get_tweet_df() 
+
+    # TODO : use all defined functions to generate a dataframe with the specified columns above
