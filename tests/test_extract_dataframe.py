@@ -205,6 +205,13 @@ class TestTweetDfExtractor(unittest.TestCase):
         locations = ['', '', '', '', '']
         self.assertEqual(self.df.find_location(), locations)
 
+    def test_find_lang(self):
+        """
+        Test case for the find lang method
+        """
+        langs = ['de', 'de', 'de', 'de', 'de']
+        self.assertEqual(self.df.find_lang(), langs)
+
+
 if __name__ == "__main__":
     unittest.main()
-
