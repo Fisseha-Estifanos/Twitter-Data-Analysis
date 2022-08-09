@@ -99,6 +99,24 @@ class TestTweetDfExtractor(unittest.TestCase):
         self.assertEqual(self.df.find_sentiments(self.df.find_full_text()),
                          sentiment_values)
 
+    def test_find_created_time(self):
+        """
+        Test case for the find created time method
+        """
+        # error test case
+        created_at = ['Fri Jun 18 17:55:49 +0000 2021',
+                      'Fri Jun 18 17:55:59 +0000 2021',
+                      'Fri Jun 18 17:56:07 +0000 2021',
+                      'Fri Jun 18 17:56:10 +0000 2021',
+                      'Fri Jun 18 17:56:20 +0000 2021']
+
+        # the edited test case
+        really_created_at = ['Fri Apr 22 22:20:18 +0000 2022',
+                             'Fri Apr 22 22:19:16 +0000 2022',
+                             'Fri Apr 22 22:17:28 +0000 2022',
+                             'Fri Apr 22 22:17:20 +0000 2022',
+                             'Fri Apr 22 22:13:15 +0000 2022']
+        self.assertEqual(self.df.find_created_time(), really_created_at)
 
     def test_find_screen_name(self):
         name = <provide a list of the first five screen names>
