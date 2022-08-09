@@ -192,7 +192,18 @@ class TestTweetDfExtractor(unittest.TestCase):
                       "id": 19962363, "id_str": "19962363", "indices": [3, 15]}
                      ]]
         self.assertEqual(self.df.find_mentions(),  mentions)
-        
+    
+    def test_find_location(self):
+        """
+        Test case for the find location method
+        """
+        # error test
+        error_locations = ['Mass', 'Edinburgh, Scotland', None, None,
+                           'United Kingdom']
+
+        # edited error test
+        locations = ['', '', '', '', '']
+        self.assertEqual(self.df.find_location(), locations)
 
 if __name__ == "__main__":
     unittest.main()
