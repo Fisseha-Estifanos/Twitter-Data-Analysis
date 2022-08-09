@@ -153,8 +153,8 @@ class TestTweetDfExtractor(unittest.TestCase):
         self.assertEqual(self.df.find_friends_count(), friends_count)
 
     def test_find_is_sensitive(self):
-        self.assertEqual(self.df.is_sensitive(), <provide a list of the first five is_sensitive values>)
-
+        self.assertEqual(self.df.is_sensitive(),
+                         [None, None, None, None, None])
 
     # def test_find_hashtags(self):
     #     self.assertEqual(self.df.find_hashtags(), )
