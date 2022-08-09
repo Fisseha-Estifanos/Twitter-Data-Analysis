@@ -167,10 +167,16 @@ class TweetDfExtractor:
         return location
 
     def get_tweet_df(self, save=False)->pd.DataFrame:
-        """required column to be generated you should be creative and add more features"""
+        """
+        required columns to be generated
+        """
         
-        columns = ['created_at', 'source', 'original_text','polarity','subjectivity', 'lang', 'favorite_count', 'retweet_count', 
-            'original_author', 'followers_count','friends_count','possibly_sensitive', 'hashtags', 'user_mentions', 'place']
+        # added_column_Names = ['status_count', 'screen_name']
+        columns = ['created_at', 'source', 'original_text','polarity',
+                   'subjectivity', 'lang', 'favorite_count', 'status_count',
+                   'retweet_count', 'screen_name', 'original_author',
+                   'followers_count','friends_count','possibly_sensitive',
+                   'hashtags', 'user_mentions', 'place']
        
         created_at = self.find_created_time()
         source = self.find_source()
@@ -178,19 +184,23 @@ class TweetDfExtractor:
         polarity, subjectivity = self.find_sentiments(text)
         lang = self.find_lang()
         fav_count = self.find_favorite_count()
+        status_count = self.find_statuses_count()
         retweet_count = self.find_retweet_count()
         screen_name = self.find_screen_name()
-        follower_count = self.find_followers_count()
+        # TODO : make this method
+        author = []
+        followers_count = self.find_followers_count()
         friends_count = self.find_friends_count()
         sensitivity = self.is_sensitive()
         hashtags = self.find_hashtags()
         mentions = self.find_mentions()
         location = self.find_location()
-        data = zip(created_at, source, text, polarity, subjectivity, lang, fav_count, retweet_count, screen_name, follower_count, friends_count, sensitivity, hashtags, mentions, location)
+
+        data = zip(created_at, source, text, polarity, subjectivity, lang, fav_count, status_count, retweet_count, screen_name, author, followers_count, friends_count, sensitivity, hashtags, mentions, location)
         df = pd.DataFrame(data=data, columns=columns)
 
         if save:
-            df.to_csv('processed_tweet_data.csv', index=False)
+            df.to_csv('data/processed_tweet_data.csv', index=False)
             print('File Successfully Saved.!!!')
         
         return df
