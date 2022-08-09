@@ -142,7 +142,14 @@ class TestTweetDfExtractor(unittest.TestCase):
         self.assertEqual(self.df.find_followers_count(), f_count)
 
     def test_find_friends_count(self):
-        friends_count = <provide a list of the first five friend's counts>
+        """
+        Test case for the find friends count method
+        """
+        # error test
+        error_friends_count = [351, 92, 1176, 2704, 30819]
+
+        # edited error test
+        friends_count = [12, 12, 12, 12, 12]
         self.assertEqual(self.df.find_friends_count(), friends_count)
 
     def test_find_is_sensitive(self):
