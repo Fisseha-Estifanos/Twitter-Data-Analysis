@@ -156,8 +156,16 @@ class TestTweetDfExtractor(unittest.TestCase):
         self.assertEqual(self.df.is_sensitive(),
                          [None, None, None, None, None])
 
-    # def test_find_hashtags(self):
-    #     self.assertEqual(self.df.find_hashtags(), )
+    def test_find_hashtags(self):
+        """
+        Test case for the find hashtags method
+        """
+        hashtags = [[], [], [], [{'indices': [16, 26], 'text': 'Deutschen'},
+                                 {'indices': [54, 67], 'text': 'Spritpreisen'},
+                                 {'indices': [95, 105], 'text': 'inflation'},
+                                 {'indices': [130, 138], 'text': 'Abgaben'}],
+                                []]
+        self.assertEqual(self.df.find_hashtags(), hashtags)
 
     # def test_find_mentions(self):
     #     self.assertEqual(self.df.find_mentions(), )
