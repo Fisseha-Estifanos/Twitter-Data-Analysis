@@ -18,9 +18,8 @@ def read_json(json_file: str) -> list:
     """
 
     tweets_data = []
-    for tweets in open(json_file,'r'):
+    for tweets in open(json_file, 'r'):
         tweets_data.append(json.loads(tweets))
-
     return len(tweets_data), tweets_data
 
 class TweetDfExtractor:
@@ -176,7 +175,7 @@ class TweetDfExtractor:
         lang = [x['lang'] for x in self.tweets_list]
         return lang
 
-    def get_tweet_df(self, save: bool=False, save_as : str = 'processed_tweet_data')->pd.DataFrame:
+    def get_tweet_df(self, save: bool=False, save_as : str = 'processed_tweet_data', as_csv : bool = False) -> pd.DataFrame:
         """
         required columns to be generated
         """
@@ -209,12 +208,17 @@ class TweetDfExtractor:
         df = pd.DataFrame(data=data, columns=columns)
 
         if save:
-            data_path = 'data/' + save_as + '.csv'
-            df.to_csv(data_path, index=False)
-            print(f'File {save_as} successfully saved as {data_path}')
+            if as_csv:
+                data_path = 'data/' + save_as + '.csv'
+                df.to_csv(data_path, index=False)
+                print(f'File {save_as} successfully saved as {data_path}')
+            else:
+                data_path = 'data/' + save_as + '.json'
+                df.to_json(data_path, indent = 4)
+                print(f'File {save_as} successfully saved as {data_path}')
         return df
 
-                
+
 if __name__ == "__main__":
     # required column to be generated you should be creative and add more features
     columns = ['created_at', 'source', 'original_text','clean_text', 'sentiment','polarity','subjectivity', 'lang', 'favorite_count', 'retweet_count', 
@@ -228,7 +232,6 @@ if __name__ == "__main__":
     global_tweet_df = global_tweet.get_tweet_df(save= True, save_as='processed_global_tweet_data')
     #print(global_tweet_df)
 
-    """
     # for the african data set
     _, african_tweet_list = read_json(african_data)
      # to make sure all the data is passe to he
@@ -236,6 +239,5 @@ if __name__ == "__main__":
     african_tweet = TweetDfExtractor(african_tweet_list)
     african_tweet_df = african_tweet.get_tweet_df(save = True, save_as='processed_african_tweet_data') 
     #print(african_tweet_df)
-    # """
 
     # TODO : use all defined functions to generate a dataframe with the specified columns above

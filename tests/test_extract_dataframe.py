@@ -2,10 +2,11 @@ import os
 import sys
 import unittest
 import pandas as pd
-from defaults import *
 
-#sys.path.append(os.path.abspath(os.path.join("../..")))
-sys.path.append("..")
+# sys.path.append(os.path.abspath(os.path.join("../..")))
+# sys.path.append(".")
+sys.path.append(".")
+from defaults import *
 
 from extract_dataframe import read_json
 from extract_dataframe import TweetDfExtractor
