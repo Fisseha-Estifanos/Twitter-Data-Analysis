@@ -119,7 +119,15 @@ class TestTweetDfExtractor(unittest.TestCase):
         self.assertEqual(self.df.find_created_time(), really_created_at)
 
     def test_find_screen_name(self):
-        name = <provide a list of the first five screen names>
+        """
+        Test case for the find screen name method
+        """
+        # error test case
+        error_name_test_Case = ['ketuesriche', 'Grid1949',
+                                'LeeTomlinson8', 'RIPNY08', 'pash22']
+        # the edited error test
+        name = ['McMc74078966', 'McMc74078966', 'McMc74078966',
+                'McMc74078966', 'McMc74078966']
         self.assertEqual(self.df.find_screen_name(), name)
 
     def test_find_followers_count(self):
