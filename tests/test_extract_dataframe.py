@@ -67,8 +67,18 @@ class TestTweetDfExtractor(unittest.TestCase):
                          [40, 40, 40, 40, 40])
 
     def test_find_full_text(self):
-        text = <provide a list of the first five full texts>
+        """
+        Test case for hte find full text method
+        """
+        # error test case
+        error_text = ['🚨Africa is "in the midst of a full-blown third wave" of coronavirus, the head of @WHOAFRO has warned\n\nCases have risen across the continent by more than 20% and deaths have also risen by 15% in the last week\n\n@jriggers reports ~ 🧵\nhttps://t.co/CRDhqPHFWM', 'Dr Moeti is head of WHO in Africa, and one of the best public health experts and leaders I know. Hers is a desperate request for vaccines to Africa. We plead with Germany and the UK to lift patent restrictions and urgently transfer technology to enable production in Africa. https://t.co/sOgIroihOc', "Thank you @research2note for creating this amazing campaign &amp; turning social media #red4research today. @NHSRDFORUM is all about sharing the talent, passion  &amp; commitment of individuals coming together as a community for the benefit of all. You've done this. Well done 👋", 'Former Pfizer VP and Virologist, Dr. Michael Yeadon, is one of the most credentialed medical professionals speaking out about the dangers of the #Covid19 vaccines, breaks down his “list of lies” that keeps him up at night. https://t.co/LSE8CrKdqn', 'I think it’s important that we don’t sell COVAX short. It still has a lot going for it and is innovative in its design. But it needs more vaccines to share.  We’re hoping our low cost @TexasChildrens recombinant protein COVID19 vaccine with @biological_e will help fill some gaps']
 
+        # the edited test case
+        text = ['RT @nikitheblogger: Irre: Annalena Baerbock sagt, es bricht ihr das Herz, dass man nicht bedingungslos schwere Waffen liefert.\nMir bricht e\u2026',
+                'RT @sagt_mit: Merkel schaffte es in 1 Jahr 1 Million \"Fl\u00fcchtlinge\" durchzuf\u00fcttern, jedoch nicht nach 16 Jahren 1 Million Rentner aus der Ar\u2026',
+                'RT @Kryptonoun: @WRi007 Pharma in Lebensmitteln, Trinkwasser, in der Luft oder in der Zahnpasta irgendwo muss ein Beruhigungsmittel bzw. Be\u2026',
+                'RT @WRi007: Die #Deutschen sind ein braves Volk!. Mit #Spritpreisen von 2 Euro abgefunden. Mit #inflation abgefunden. Mit h\u00f6heren #Abgaben\u2026',
+                'RT @RolandTichy: Baerbock verk\u00fcndet mal so nebenhin in Riga das Ende der Energieimporte aus Russland. Habeck rudert schon zur\u00fcck, Scholz sc\u2026']
         self.assertEqual(self.df.find_full_text(), text)
 
     def test_find_sentiments(self):
