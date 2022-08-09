@@ -216,11 +216,11 @@ if __name__ == "__main__":
     # for the global data set
     _, global_tweet_list = read_json(global_data)
     global_tweet = TweetDfExtractor(global_tweet_list)
-    global_tweet_df = global_tweet.get_tweet_df() 
+    global_tweet_df = global_tweet.get_tweet_df(save= True, save_as='processed_global_tweet_data') 
 
     # for the african data set
     _, african_tweet_list = read_json(african_data)
     african_tweet = TweetDfExtractor(african_tweet_list)
-    african_tweet_df = african_tweet.get_tweet_df() 
+    african_tweet_df = african_tweet.get_tweet_df(save = True, save_as='processed_african_tweet_data') 
 
     # TODO : use all defined functions to generate a dataframe with the specified columns above
