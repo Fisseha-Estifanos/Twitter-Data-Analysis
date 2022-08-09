@@ -54,7 +54,8 @@ class TweetDfExtractor:
                 text.append(x['retweeted_status']
                             ['extended_tweet']['full_text'])
             except KeyError:
-                text.append(x['text'])
+                #text.append(x['text'])
+                text.append('NA')
         return text
 
     def find_sentiments(self, text)->list:
@@ -103,6 +104,7 @@ class TweetDfExtractor:
         return  friends_count
 
     def is_sensitive(self)->list:
+        """
         try:
             is_sensitive = [x['possibly_sensitive'] for x in self.tweets_list]
         except KeyError:
@@ -117,7 +119,6 @@ class TweetDfExtractor:
             else:
                 is_sensitive.append(None)
         return is_sensitive
-        """
 
     def find_favorite_count(self)->list:
         """
@@ -167,6 +168,13 @@ class TweetDfExtractor:
                     self.tweets_list]
         return location
 
+    def find_lang(self) -> list:
+        """
+        function to find and return the language of a tweet
+        """
+        lang = [x['lang'] for x in self.tweets_list]
+        return lang
+
     def get_tweet_df(self, save: bool=False, save_as : str = 'processed_tweet_data')->pd.DataFrame:
         """
         required columns to be generated
@@ -203,8 +211,7 @@ class TweetDfExtractor:
         if save:
             data_path = 'data/' + save_as + '.csv'
             df.to_csv(data_path, index=False)
-            print('File Successfully Saved.!!!')
-        
+            print(f'File {save_as} successfully saved as {data_path}')
         return df
 
                 
