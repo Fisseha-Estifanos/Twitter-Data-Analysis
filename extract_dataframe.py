@@ -158,23 +158,14 @@ class TweetDfExtractor:
         mentions = [x['entities']['user_mentions'] for x in self.tweets_list]
         return mentions
 
-
     def find_location(self)->list:
-        try:
-            location = self.tweets_list['user']['location']
-        except TypeError:
-            location = ''
-        
-        return location
-
-         # function to find and return the location of a tweet
+        """
+        function to find and return the location of a tweet
+        """
         location = [x.get('user', {}).get('location', None) for x in
                     self.tweets_list]
         return location
 
-    
-        
-        
     def get_tweet_df(self, save=False)->pd.DataFrame:
         """required column to be generated you should be creative and add more features"""
         
