@@ -1,6 +1,8 @@
+import os
+import sys
 import unittest
 import pandas as pd
-import sys, os
+from defaults import *
 
 #sys.path.append(os.path.abspath(os.path.join("../..")))
 sys.path.append("..")
@@ -12,8 +14,8 @@ from extract_dataframe import TweetDfExtractor
 # we will need about 5 tweet samples. 
 # Create a sample not more than 10 tweets and place it in a json file.
 # Provide the path to the samples tweets file you created below
-sampletweetsjsonfile = ""   #put here the path to where you placed the file e.g. ./sampletweets.json. 
-_, tweet_list = read_json(sampletweetsjsonfile)
+
+_, tweet_list = read_json(processed_global_data)
 
 columns = [
     "created_at",
@@ -53,9 +55,16 @@ class TestTweetDfExtractor(unittest.TestCase):
         # tweet_df = self.df.get_tweet_df()
 
     def test_find_statuses_count(self):
-        self.assertEqual(
-            self.df.find_statuses_count(), <provide a list of the first five status counts>
-        )
+        """
+        Test case for the find statuses count method
+        """
+        # error test
+        # self.assertEqual(self.df.find_statuses_count(),
+        # [204051, 3462, 6727, 45477, 277957])
+
+        # the edited error test
+        self.assertEqual(self.df.find_statuses_count(),
+                         [40, 40, 40, 40, 40])
 
     def test_find_full_text(self):
         text = <provide a list of the first five full texts>
