@@ -1,0 +1,4 @@
+outs:
+- md5: d4f609b948684376ef8fe77cacb1de05
+  size: 148935737
+  path: global_twitter_data.json
