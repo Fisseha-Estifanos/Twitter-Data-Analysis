@@ -51,8 +51,7 @@ class TweetDfExtractor:
         text = []
         for x in self.tweets_list:
             try:
-                text.append(x['retweeted_status']
-                            ['extended_tweet']['full_text'])
+                text.append(x['full_text'])
             except KeyError:
                 #text.append(x['text'])
                 text.append('NA')
@@ -205,7 +204,7 @@ class TweetDfExtractor:
         status_count = self.find_statuses_count()
         retweet_count = self.find_retweet_count()
         screen_name = self.find_screen_name()
-        author = self.find_authors()        
+        author = self.find_screen_name()      
         followers_count = self.find_followers_count()
         friends_count = self.find_friends_count()
         sensitivity = self.is_sensitive()
@@ -216,7 +215,7 @@ class TweetDfExtractor:
         selected_data = [created_at, source, text, polarity, subjectivity, lang, fav_count, status_count, retweet_count, screen_name, author, followers_count, friends_count, sensitivity, hashtags, mentions, location]
 
         sel_data = {}
-        for i in range(1, len(selected_columns), 1):
+        for i in range(0, len(selected_columns), 1):
             sel_data[selected_columns[i]] = selected_data[i]
 
         final_dataframe = pd.DataFrame(data = sel_data)
@@ -267,12 +266,12 @@ if __name__ == "__main__":
     global_tweet_df = global_tweet.get_tweet_df(save= True, save_as='processed_global_tweet_data')
     print(global_tweet_df)
 
-    # for the african data set
+    """# for the african data set
     _, african_tweet_list = read_json(african_data)
      # to make sure all the data is passe to he
     print(f"Total number of data: {_}")
     african_tweet = TweetDfExtractor(african_tweet_list)
     african_tweet_df = african_tweet.get_tweet_df(save = True, save_as='processed_african_tweet_data') 
-    print(african_tweet_df)
+    print(african_tweet_df)"""
 
     # TODO : use all defined functions to generate a dataframe with the specified columns above
