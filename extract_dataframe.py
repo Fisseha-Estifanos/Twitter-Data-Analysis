@@ -18,9 +18,8 @@ def read_json(json_file: str) -> list:
     """
 
     tweets_data = []
-    for tweets in open(json_file,'r'):
+    for tweets in open(json_file, 'r'):
         tweets_data.append(json.loads(tweets))
-
     return len(tweets_data), tweets_data
 
 class TweetDfExtractor:
@@ -175,13 +174,23 @@ class TweetDfExtractor:
         """
         lang = [x['lang'] for x in self.tweets_list]
         return lang
+    
+    # TODO : make this method
+    def find_authors(self) -> list:
+        """
+        function to find and return authors of tweets
+        """
+        authors = []
+        for x in range(22000):
+            authors.append(x)
+        return authors
 
-    def get_tweet_df(self, save: bool=False, save_as : str = 'processed_tweet_data')->pd.DataFrame:
+    def get_tweet_df(self, save: bool=False, save_as : str = 'processed_tweet_data', as_csv : bool = False) -> pd.DataFrame:
         """
         required columns to be generated
         """
         # added_column_Names = ['status_count', 'screen_name']
-        columns = ['created_at', 'source', 'original_text','polarity',
+        selected_columns = ['created_at', 'source', 'original_text','polarity',
                    'subjectivity', 'lang', 'favorite_count', 'status_count',
                    'retweet_count', 'screen_name', 'original_author',
                    'followers_count','friends_count','possibly_sensitive',
@@ -196,8 +205,7 @@ class TweetDfExtractor:
         status_count = self.find_statuses_count()
         retweet_count = self.find_retweet_count()
         screen_name = self.find_screen_name()
-        # TODO : make this method
-        author = []
+        author = self.find_authors()        
         followers_count = self.find_followers_count()
         friends_count = self.find_friends_count()
         sensitivity = self.is_sensitive()
@@ -205,16 +213,47 @@ class TweetDfExtractor:
         mentions = self.find_mentions()
         location = self.find_location()
 
-        data = zip(created_at, source, text, polarity, subjectivity, lang, fav_count, status_count, retweet_count, screen_name, author, followers_count, friends_count, sensitivity, hashtags, mentions, location)
-        df = pd.DataFrame(data=data, columns=columns)
+        selected_data = [created_at, source, text, polarity, subjectivity, lang, fav_count, status_count, retweet_count, screen_name, author, followers_count, friends_count, sensitivity, hashtags, mentions, location]
+
+        sel_data = {}
+        for i in range(1, len(selected_columns), 1):
+            sel_data[selected_columns[i]] = selected_data[i]
+
+        final_dataframe = pd.DataFrame(data = sel_data)
+
+        """print({len(status_count)}, {len(created_at)}, {len(source)},
+               {len(text)}, {len(polarity)}, {len(subjectivity)},
+               {len(fav_count)}, {len(retweet_count)}, {len(screen_name)},
+               {len(followers_count)}, {len(friends_count)},
+               {len(sensitivity)}, {len(hashtags)}, {len(mentions)},
+               {len(location)}, {len(lang)}, {len(author)})"""
+
+        """print(status_count, created_at, source,
+               text, polarity, subjectivity,
+               fav_count, retweet_count, screen_name,
+               followers_count, friends_count,
+               sensitivity, hashtags, mentions,
+               location, lang, author)"""
+
+        """print({type(status_count)}, {type(created_at)}, {type(source)},
+                {type(text)}, {type(polarity)}, {type(subjectivity)},
+                {type(fav_count)}, {type(retweet_count)}, {type(screen_name)},
+                {type(followers_count)}, {type(friends_count)},
+                {type(sensitivity)}, {type(hashtags)}, {type(mentions)},
+                {type(location)}, {type(lang)}, {type(author)})"""
 
         if save:
-            data_path = 'data/' + save_as + '.csv'
-            df.to_csv(data_path, index=False)
-            print(f'File {save_as} successfully saved as {data_path}')
-        return df
+            if as_csv:
+                data_path = 'data/' + save_as + '.csv'
+                final_dataframe.to_csv(data_path, index=False)
+                print(f'File {save_as} successfully saved as {data_path}')
+            else:
+                data_path = 'data/' + save_as + '.json'
+                final_dataframe.to_json(data_path, indent=4)
+                print(f'File {save_as} successfully saved as {data_path}')
+        return final_dataframe
 
-                
+
 if __name__ == "__main__":
     # required column to be generated you should be creative and add more features
     columns = ['created_at', 'source', 'original_text','clean_text', 'sentiment','polarity','subjectivity', 'lang', 'favorite_count', 'retweet_count', 
@@ -226,16 +265,14 @@ if __name__ == "__main__":
     print(f"Total number of data: {_}")
     global_tweet = TweetDfExtractor(global_tweet_list)
     global_tweet_df = global_tweet.get_tweet_df(save= True, save_as='processed_global_tweet_data')
-    #print(global_tweet_df)
+    print(global_tweet_df)
 
-    """
     # for the african data set
     _, african_tweet_list = read_json(african_data)
      # to make sure all the data is passe to he
     print(f"Total number of data: {_}")
     african_tweet = TweetDfExtractor(african_tweet_list)
     african_tweet_df = african_tweet.get_tweet_df(save = True, save_as='processed_african_tweet_data') 
-    #print(african_tweet_df)
-    # """
+    print(african_tweet_df)
 
     # TODO : use all defined functions to generate a dataframe with the specified columns above

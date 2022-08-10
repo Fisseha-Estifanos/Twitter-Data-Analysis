@@ -103,6 +103,7 @@ if __name__ == "__main__":
     class
     """
     global_tweet_df = pd.read_json(global_data, lines=True)
-    african_tweet_df = pd.read_json(african_data, lines=True)
     global_cleaner = Clean_Tweets(global_tweet_df)
+    
+    african_tweet_df = pd.read_json(african_data, lines=True)
     african_cleaner = Clean_Tweets(african_tweet_df)
