@@ -65,7 +65,7 @@ class TestTweetDfExtractor(unittest.TestCase):
 
         # the edited error test
         self.assertEqual(self.df.find_status_count(),
-                         [40, 40, 40, 40, 40])
+                         [8097, 5831, 1627, 1627, 18958])
 
     def test_find_full_text(self):
         """
@@ -82,12 +82,13 @@ class TestTweetDfExtractor(unittest.TestCase):
                 'RT @RolandTichy: Baerbock verk\u00fcndet mal so nebenhin in Riga das Ende der Energieimporte aus Russland. Habeck rudert schon zur\u00fcck, Scholz sc\u2026']
         self.assertEqual(self.df.find_full_text(), text)
 
-    def test_find_sentiments(self):
-        """
-        Test case for the find sentiments method
-        """
+    """
+    def test_find_subjectivity(self):
+        #
+        #Test case for the find subjectivity method
+        #
         # error test case
-        error_sentiment_values = ([0.16666666666666666, 0.13333333333333333,
+        error_subjectivity_values = ([0.16666666666666666, 0.13333333333333333,
                                   0.3166666666666667, 0.08611111111111111,
                                   0.27999999999999997],
                                   [0.18888888888888888, 0.45555555555555555,
@@ -95,10 +96,11 @@ class TestTweetDfExtractor(unittest.TestCase):
                                   0.6199999999999999])
 
         # the edited error test
-        sentiment_values = ([0.0, 0.0, 0.0, 0.0, 0.0],
+        subjectivity_values = ([0.0, 0.0, 0.0, 0.0, 0.0],
                             [0.0, 0.0, 0.0, 0.0, 0.0])
-        self.assertEqual(self.df.find_sentiments(self.df.find_full_text()),
+        self.assertEqual(self.df.find_subjectivity(self.df.find_full_text()),
                          sentiment_values)
+    """
 
     def test_find_created_time(self):
         """
@@ -112,11 +114,11 @@ class TestTweetDfExtractor(unittest.TestCase):
                       'Fri Jun 18 17:56:20 +0000 2021']
 
         # the edited test case
-        really_created_at = ['Fri Apr 22 22:20:18 +0000 2022',
-                             'Fri Apr 22 22:19:16 +0000 2022',
-                             'Fri Apr 22 22:17:28 +0000 2022',
-                             'Fri Apr 22 22:17:20 +0000 2022',
-                             'Fri Apr 22 22:13:15 +0000 2022']
+        really_created_at = ['2022-08-07 22:31:20+00:00',
+                             '2022-08-07 22:31:16+00:00',
+                             '2022-08-07 22:31:07+00:00',
+                             '2022-08-07 22:31:06+00:00',
+                             '2022-08-07 22:31:04+00:00']
         self.assertEqual(self.df.find_created_time(), really_created_at)
 
     def test_find_source(self):
@@ -127,7 +129,7 @@ class TestTweetDfExtractor(unittest.TestCase):
         error_source = ['<a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>', '<a href="https://mobile.twitter.com" rel="nofollow">Twitter Web App</a>', '<a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>', '<a href="https://mobile.twitter.com" rel="nofollow">Twitter Web App</a>', '<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>']
 
         # the edited test case
-        source = ['<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>', '<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>', '<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>', '<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>', '<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>']
+        source = ['Twitter for Android', 'Twitter for Android', 'Twitter for Android', 'Twitter for Android', 'Twitter for iPhone']
         self.assertEqual(self.df.find_source(), source)
 
     def test_find_screen_name(self):
@@ -138,8 +140,7 @@ class TestTweetDfExtractor(unittest.TestCase):
         error_name_test_Case = ['ketuesriche', 'Grid1949',
                                 'LeeTomlinson8', 'RIPNY08', 'pash22']
         # the edited error test
-        name = ['McMc74078966', 'McMc74078966', 'McMc74078966',
-                'McMc74078966', 'McMc74078966']
+        name = ['i_ameztoy', 'ZIisq', 'Fin21Free', 'Fin21Free', 'VizziniDolores']
         self.assertEqual(self.df.find_screen_name(), name)
 
     def test_find_followers_count(self):
@@ -150,7 +151,7 @@ class TestTweetDfExtractor(unittest.TestCase):
         error_f_count = [551, 66, 1195, 2666, 28250]
 
         # the edited error test
-        f_count = [3, 3, 3, 3, 3]
+        f_count = [20497, 65, 85, 85, 910]
         self.assertEqual(self.df.find_followers_count(), f_count)
 
     def test_find_friends_count(self):
@@ -161,22 +162,22 @@ class TestTweetDfExtractor(unittest.TestCase):
         error_friends_count = [351, 92, 1176, 2704, 30819]
 
         # edited error test
-        friends_count = [12, 12, 12, 12, 12]
+        friends_count = [2621, 272, 392, 392, 2608]
         self.assertEqual(self.df.find_friends_count(), friends_count)
 
     def test_find_is_sensitive(self):
         self.assertEqual(self.df.is_sensitive(),
-                         [None, None, None, None, None])
+                         ['unknown', 'unknown', 'unknown', 'unknown', 'unknown'])
 
     def test_find_hashtags(self):
         """
         Test case for the find hashtags method
         """
-        hashtags = [[], [], [], [{'indices': [16, 26], 'text': 'Deutschen'},
-                                 {'indices': [54, 67], 'text': 'Spritpreisen'},
-                                 {'indices': [95, 105], 'text': 'inflation'},
-                                 {'indices': [130, 138], 'text': 'Abgaben'}],
-                                []]
+        hashtags = [[{'text': 'City', 'indices': [132, 137]}],
+                    [{'text': 'China', 'indices': [18, 24]}],
+                    [{'text': 'XiJinping', 'indices': [127, 137]}],
+                    [{'text': 'XiJinping', 'indices': [9, 19]}],
+                    []]
         self.assertEqual(self.df.find_hashtags(), hashtags)
 
     def test_find_mentions(self):
@@ -210,8 +211,8 @@ class TestTweetDfExtractor(unittest.TestCase):
         Test case for the find location method
         """
         # error test
-        error_locations = ['Mass', 'Edinburgh, Scotland', None, None,
-                           'United Kingdom']
+        error_locations = ['unknown', 'unknown, Netherlands', 'Netherlands'
+                           'Ayent, Schweiz']
 
         # edited error test
         locations = ['', '', '', '', '']
@@ -221,7 +222,7 @@ class TestTweetDfExtractor(unittest.TestCase):
         """
         Test case for the find lang method
         """
-        langs = ['de', 'de', 'de', 'de', 'de']
+        langs = ['en', 'en', 'en', 'en', 'en']
         self.assertEqual(self.df.find_lang(), langs)
 
     def test_find_retweet_count(self):
@@ -232,7 +233,7 @@ class TestTweetDfExtractor(unittest.TestCase):
         error_retweets_test_Case = [612, 92, 1, 899, 20]
 
         # the edited error test
-        retweets = [355, 505, 4, 332, 386]
+        retweets = [2, 201, 0, 0, 381]
         self.assertEqual(self.df.find_retweet_count(), retweets)
 
     def test_find_favorite_count(self):
@@ -245,7 +246,7 @@ class TestTweetDfExtractor(unittest.TestCase):
 
         # the edited error test
         self.assertEqual(self.df.find_favorite_count(),
-                         [2356, 1985, 16, 1242, 1329])
+                         [4, 691, 0, 0, 1521])
 
 if __name__ == "__main__":
     unittest.main()
