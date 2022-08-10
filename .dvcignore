@@ -3,3 +3,7 @@
 # https://dvc.org/doc/user-guide/dvcignore
 
 generated_data/
+notebooks/
+.github/
+tests/
+scripts/
