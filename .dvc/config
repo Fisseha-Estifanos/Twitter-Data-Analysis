@@ -1,0 +1,4 @@
+[core]
+    remote = local_remote
+['remote "local_remote"']
+    url = C:\Users\f0x-tr0t\Documents\education\datascience\dvc-storage
