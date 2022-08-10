@@ -1,3 +1,7 @@
 __pycache__/
-data/
 .ipynb_checkpoints
+
+data/africa_twitter_data.json
+data/clean_data.csv
+data/global_twitter_data.json
+data/processed_global_tweet_data.json
