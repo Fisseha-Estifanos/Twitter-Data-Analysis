@@ -16,7 +16,7 @@ from extract_dataframe import TweetDfExtractor
 # Create a sample not more than 10 tweets and place it in a json file.
 # Provide the path to the samples tweets file you created below
 
-_, tweet_list = read_json('../data/processed_global_tweet_data.json')
+_, tweet_list = read_json(sample_data)
 
 columns = [
     "created_at",
