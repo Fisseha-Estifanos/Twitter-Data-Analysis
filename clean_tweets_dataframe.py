@@ -129,6 +129,10 @@ class Clean_Tweets:
         returns device name from source text
         """
         res = re.split('<|>', source)[2].strip()
+
+        # TODO : test this code
+        #tweets_df["source"] = tweets_df["source"].str.replace(r"(\s*\<.*?\>\s*)", " ", regex=True).str.strip()
+        
         return 
 
 if __name__ == "__main__":
