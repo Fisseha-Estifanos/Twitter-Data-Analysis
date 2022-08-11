@@ -8,3 +8,4 @@ notebooks/
 .github/workflows/
 tests/
 scripts/
+test_script_helper.py
