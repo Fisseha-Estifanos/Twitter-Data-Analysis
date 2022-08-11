@@ -16,7 +16,7 @@ from extract_dataframe import TweetDfExtractor
 # Provide the path to the samples tweets file you created below
 
 #tweet_list = pd.read_csv('data/clean_data.csv')
-_len, tweet_list = read_json('data/global_twitter_data.json')
+_len, tweet_list = read_json('sample_data/global_twitter_data_sample.json')
 
 columns = [
     "created_at",
