@@ -3,9 +3,9 @@ import sys
 import unittest
 import pandas as pd
 
-# sys.path.append(os.path.abspath(os.path.join("../..")))
-# sys.path.append(".")
+sys.path.append(os.path.abspath(os.path.join("../..")))
 sys.path.append(".")
+sys.path.append("..")
 from defaults import *
 
 from extract_dataframe import read_json
@@ -16,7 +16,8 @@ from extract_dataframe import TweetDfExtractor
 # Create a sample not more than 10 tweets and place it in a json file.
 # Provide the path to the samples tweets file you created below
 
-tweet_list = pd.read_csv(sample_data)
+#tweet_list = pd.read_csv('data/clean_data.csv')
+tweet_list = pd.read_json('data/clean_data.json')
 
 columns = [
     "created_at",
@@ -64,8 +65,8 @@ class TestTweetDfExtractor(unittest.TestCase):
         # [204051, 3462, 6727, 45477, 277957])
 
         # the edited error test
-        self.assertEqual(self.df.find_status_count(),
-                         [8097, 5831, 1627, 1627, 18958])
+        self.assertEqual(self.df.find_statuses_count(),
+                         ['8097', '5831', '1627', '1627', '18958'])
 
     def test_find_full_text(self):
         """
