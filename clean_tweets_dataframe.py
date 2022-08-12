@@ -96,7 +96,7 @@ class Clean_Tweets:
                 polarities.append('UNK')
         return polarities
     
-    def fill_missing(self, df: pd.DataFrame, column: str, value):
+    def fill_missing(self, df: pd.DataFrame, column: str, value: str = 'unknown'):
         """
         fill null values of a specific column with the provided value
         """
@@ -124,16 +124,16 @@ class Clean_Tweets:
 
         return df
 
-    def extract_device_name(self, source: str):
+    def extract_device_name(self, df: pd.DataFrame) -> pd.Series:
         """
         returns device name from source text
         """
-        res = re.split('<|>', source)[2].strip()
-
-        # TODO : test this code
-        #tweets_df["source"] = tweets_df["source"].str.replace(r"(\s*\<.*?\>\s*)", " ", regex=True).str.strip()
+        df["source"] = df["source"].str.replace(r"(\s*\<.*?\>\s*)", " ", regex=True).str.strip()
         
-        return 
+        # this works for a single row,where source a string 
+        # res = re.split('<|>', source)[2].strip()        
+
+        return df["source"]
 
 if __name__ == "__main__":
     """
