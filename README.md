@@ -59,6 +59,8 @@ Data can be found [here at google drive](https://drive.google.com/drive/folders/
 ## Pipelines
 > Dvc played a huge role in creating a reproducible pipelines real fast and easily. We can easily update the 'dvc.yml' file and create or add several steps to our cleaning, preprocessing, extracting, exploratory data analysis, sentiment analysis, topic modeling and database creation steps.
 
+![](plots/dvc_dag.PNG) 
+
 ## Tests
 
 > All the unit and integration tests are found here in the tests folder.
