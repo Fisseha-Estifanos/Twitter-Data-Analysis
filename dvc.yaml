@@ -23,3 +23,15 @@ stages:
     outs: 
       - data/clean_data_dvc_pp.json
       - data/clean_data_dvc_pp.csv
+
+  populate_database:
+    cmd: python MlOps-Modules/data_handler.py
+
+    deps:
+      - MlOps-Modules/create_table.sql
+
+    params:
+      - populate_db.yml
+
+    outs:
+      - MlOps-Modules/tweets.db
