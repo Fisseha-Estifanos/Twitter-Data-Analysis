@@ -1,0 +1,25 @@
+stages:
+  extract:
+    cmd: python extract_dataframe.py
+
+    deps: 
+      - data/global_twitter_Data.json
+    
+    params:
+      - extract_params.yml
+    
+    outs:
+      - data/processed_global_tweet_data.json
+
+  clean_preprocess:
+    cmd: python clean_tweets_dataframe.py
+
+    deps:
+      - data/processed_global_tweet_data.json
+
+    params:
+      - clean_params.yml
+
+    outs: 
+      - data/clean_data.json
+      - data/clean_data.csv
