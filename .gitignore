@@ -9,3 +9,5 @@ data/clean_data.json
 data/clean_data.csv
 
 .vscode/
+
+.pytest_cache
