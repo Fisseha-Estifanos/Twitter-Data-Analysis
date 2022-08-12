@@ -86,3 +86,46 @@ def insert_to_tweet_table(connection: sqlite3.Connection, df: pd.DataFrame, tabl
     return
 
 
+def db_execute_fetch(connection:sqlite3.Connection, selection_query : str, dbName : str, rdf=True, many = False) -> pd.DataFrame:
+    """
+    A method to execute a fetch query based on a given selection query 
+
+    Parameters
+    ----------
+    *args :
+
+    many :
+         (Default value = False)
+    tablename :
+         (Default value = '')
+    rdf :
+         (Default value = True)
+    **kwargs :
+
+    Returns
+    -------
+    Dataframe:
+        pandas dataframe
+    """   
+    
+    cursor1 = connection.cursor()
+    result = None
+    try:
+        cursor1.execute(selection_query)
+        result = cursor1.fetchall()
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+    #print(result[0], end="\n\n")
+    # get column names
+    field_names = [i[0] for i in cursor1.description]
+
+    cursor1.close()
+    connection.close()
+
+    # return result
+    if rdf:
+        return pd.DataFrame(result, columns=field_names)
+    else:
+        return result
+
