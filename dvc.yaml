@@ -9,17 +9,17 @@ stages:
       - extract_params.yml
     
     outs:
-      - data/processed_global_tweet_data.json
+      - data/processed_global_tweet_data_dvc_pp.json
 
   clean_preprocess:
     cmd: python clean_tweets_dataframe.py
 
     deps:
-      - data/processed_global_tweet_data.json
+      - data/processed_global_tweet_data.csv
 
     params:
       - clean_params.yml
 
     outs: 
-      - data/clean_data.json
-      - data/clean_data.csv
+      - data/clean_data_dvc_pp.json
+      - data/clean_data_dvc_pp.csv
