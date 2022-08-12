@@ -43,21 +43,6 @@ pip install -r requirements.txt
 
 Data can be found [here at google drive](https://drive.google.com/drive/folders/19G8dmehf9vU0u6VTKGV-yWsQOn3IvPsd), and or [Global data set](https://drive.google.com/file/d/1sfx50_tQ6jyBENo0L7hM3WL-11RhWqEB/view?usp=sharing), or [African data set](https://drive.google.com/file/d/1219EjMcjCD4yLqTbBUauOE0-95dqhz4Q/view?usp=sharing)
 
-#### Categorical variables
-
-      - Diagnosis(Malignant / benign)
-
-#### Continuous variables
-
-      - Circumference (mean of distances from the center to points on the perimeter)
-      - Concavity (severity of concave portions of the contour)
-      - Points that are concave (number of concave portions of the contour)
-      - Fractal dimension of symmetry (“coastline approximation” — 1)
-      - Texture (standard deviation of gray-scale values)
-      - Perimeter\s area
-      - Suppleness (local variation in radius lengths)
-      - Compactness (area2 / perimeter2 — 1.0)
-
 ## Notebooks
 
 > All the preprocessing, analysis, EDA and examples of sentiment analysis and topic modeling implementation will be here in the form of .ipynb file in the notebooks folder.
